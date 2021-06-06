@@ -1,0 +1,33 @@
+{"menu": {
+    "header": "SVG Viewer",
+    "items": [
+        {"id": "Open"},
+        {"id": "OpenNew", "label": "Открыть новый"},
+        {"id": "OpenRec", "label": "Открыть недавний"},
+        {"id": "ExpAs", "label": "Экспортировать как..."},
+        {"id": "Prefs", "label": "Настройки"},
+        {"id": "NewTab", "label": "Новая вкладка"},
+        {"id": "ClAll", "label": "Закрыть все"},
+        {"id": "Exit", "label": "Выйти"},     
+        null,
+        {"id": "ZoomIn", "label": "Приблизить"},
+        {"id": "ZoomOut", "label": "Отдалить"},
+        {"id": "OriginalView", "label": "Первоначальный вид"},
+        null,
+        {"id": "Quality", "label": "Качество"},
+        {"id": "Pause", "label": "Пауза"},
+        {"id": "Mute", "label": "Без звука"},
+        null,
+        {"id": "Find", "label": "Найти..."},
+        {"id": "FindAgain", "label": "Найти снова"},
+        {"id": "Copy"},
+        {"id": "CopyAgain", "label": "Копировать снова"},
+        {"id": "CopySVG", "label": "Копировать SVG"},
+        {"id": "ViewSVG", "label": "Просмотр SVG"},
+        {"id": "ViewSource", "label": "Просмотр источника"},
+        {"id": "SaveAs", "label": "Сохранить как"},
+        null,
+        {"id": "Help"},
+        {"id": "About", "label": "О SVG Viewer..."}
+    ]
+}}
