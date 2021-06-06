@@ -1,4 +1,4 @@
-<div align="center">![Логотип Unicode](images/unicode.png)</div>
+<img align="center" src="images/unicode.png">Логотип Unicode</img>
 
 # Unicode: основные понятия и принципы
 
