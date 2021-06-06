@@ -1,4 +1,6 @@
-<img align="center" src="images/unicode.png">Логотип Unicode</img>
+<p align="center">
+<img src="images/unicode.png">Логотип Unicode</img>
+</p>
 
 # Unicode: основные понятия и принципы
 
