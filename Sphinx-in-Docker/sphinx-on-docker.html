@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How to deploy and use Sphinx in Docker &#8212; Sphinx 1 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="How to install Docker" href="install-docker.html" />
+    <link rel="prev" title="Welcome to Sphinx’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-deploy-and-use-sphinx-in-docker">
+<h1>How to deploy and use Sphinx in Docker<a class="headerlink" href="#how-to-deploy-and-use-sphinx-in-docker" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="install-docker">
+<h2>1.  Install Docker<a class="headerlink" href="#install-docker" title="Permalink to this headline">¶</a></h2>
+<p>In order to install Docker software on your OS, refer to the <a class="reference internal" href="install-docker.html#install-docker"><span class="std std-ref">additional manual</span></a>.</p>
+</div>
+<div class="section" id="download-the-sphinx-image">
+<h2>2.  Download the Sphinx image<a class="headerlink" href="#download-the-sphinx-image" title="Permalink to this headline">¶</a></h2>
+<p>Once you have installed Docker, download the Sphinx-Doc image:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$docker pull sphinxdoc/sphinx
+</pre></div>
+</div>
+<p>If you prefer to build documents in PDF, download the image containing the TeXLive packages:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$docker pull sphinxdoc/sphinx-latexpdf
+</pre></div>
+</div>
+<p>In order to check if the Sphinx image has been successfully downloaded, run the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$docker images
+</pre></div>
+</div>
+<p>You will receive the list containing all images you have downloaded:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">REPOSITORY</span>          <span class="n">TAG</span>                 <span class="n">IMAGE</span> <span class="n">ID</span>            <span class="n">CREATED</span>             <span class="n">SIZE</span>
+<span class="n">sphinxdoc</span><span class="o">/</span><span class="n">sphinx</span>    <span class="n">latest</span>              <span class="n">a55aa3f72f43</span>        <span class="mi">9</span> <span class="n">days</span> <span class="n">ago</span>          <span class="mi">281</span><span class="n">MB</span>
+</pre></div>
+</div>
+<p>If you don’t need a Sphinx image anymore, you can remove it like any other Docker image by running the command <strong>rmi</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$docker rmi &lt;IMAGE ID&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-and-manage-your-sphinx-container">
+<h2>3.  Create and manage your Sphinx container<a class="headerlink" href="#create-and-manage-your-sphinx-container" title="Permalink to this headline">¶</a></h2>
+<p>After successful download of the Sphinx image, you can start working with it.</p>
+<p>First of all, don’t forget that all Sphinx commands will be performed in a Docker container with the use of its own filesystem.
+Moreover, after successfull finish of each command, the container will be terminated and all files that are not included in the original image will be purged.</p>
+<p>In order to operate your source files properly and save them on your HDD, you should do the following:</p>
+<ul class="simple">
+<li><p>Run a Sphinx container;</p></li>
+<li><p>Mount your local folder to the folder inside of the created Sphinx container;</p></li>
+<li><p>Start the Bash session in the Sphinx container.</p></li>
+</ul>
+<p>This can be done in one complex command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$docker run -it -v &lt;LOCAL_FOLDER&gt;:/&lt;CONTAINER_FOLDER&gt;  sphinxdoc/sphinx /bin/bash
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The command <strong>run</strong> starts a container. The flag <strong>-i</strong> opens the standard input (STDIN) of the container and allows it to grab your next commands. The flag <strong>-t</strong> assigns a pseudo-TTY or a terminal to this container. These two flags (-it in combination) allow to open the Bash shell included in the Sphinx image.</p></li>
+<li><p>The flag <strong>-v</strong> mounts your local folder to a definite folder of the newly created container. Note that you require an absolute path of a folder on your HDD. After the path, type the colon and choose or create any folder inside the container.</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">My_Docs_on_HDD</span><span class="p">:</span><span class="o">/</span><span class="n">My_Docs_in_Container</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>sphinxdoc/sphinx</strong> is the name of the Sphinx image to create a container.</p></li>
+<li><p>The <strong>bin/bash</strong> command starts the terminal inside the created container.</p></li>
+</ul>
+<p>Once you have run this command, you will enter the inner Bash session:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">root</span><span class="o">@&lt;</span><span class="n">Container_ID</span><span class="o">&gt;</span><span class="p">:</span><span class="o">/</span><span class="n">docs</span><span class="c1">#</span>
+</pre></div>
+</div>
+<p>It starts from the <em>/docs</em> directory. In order to find your mounted directory, leave the <em>/docs</em> with the use of the command <strong>cd ..</strong>, find and enter the directory you have chosen. For this, you can use the <strong>&amp;&amp;</strong> operand:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">root</span><span class="o">@&lt;</span><span class="n">Container_ID</span><span class="o">&gt;</span><span class="p">:</span><span class="o">/</span><span class="n">docs</span><span class="c1"># cd .. &amp;&amp; cd /My_Docs_in_Container</span>
+<span class="n">root</span><span class="o">@&lt;</span><span class="n">Container_ID</span><span class="o">&gt;</span><span class="p">:</span><span class="o">/</span><span class="n">My_Docs_in_Container</span><span class="c1">#</span>
+</pre></div>
+</div>
+<p>From here, you can use the Sphinx software as usual. All changes you have done inside the container will be automatically stored in your local folder, and vice versa.</p>
+<p>Once you have finished work with the container, press <em>Ctrl+D</em> in order to exit the Bash shell. This will also terminate the container.</p>
+<p>You can get additional information about usage of the Sphinx image in the <a class="reference external" href="https://hub.docker.com/r/sphinxdoc/sphinx/">official Docker Hub manual</a>.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Sphinx</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to deploy and use Sphinx in Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#install-docker">1.  Install Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#download-the-sphinx-image">2.  Download the Sphinx image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-and-manage-your-sphinx-container">3.  Create and manage your Sphinx container</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="install-docker.html">How to install Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx-on-docker-RU.html">Развертывание и использование Sphinx в Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-docker-RU.html">Установка Docker</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to Sphinx’s documentation!</a></li>
+      <li>Next: <a href="install-docker.html" title="next chapter">How to install Docker</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, hopevb.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/sphinx-on-docker.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

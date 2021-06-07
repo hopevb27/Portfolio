@@ -1,0 +1,37 @@
+.. _install-docker:
+
+How to install Docker
+=====================
+
+1. Linux
+--------
+Refer to the package manager of your OS - the majority of repositories include Docker.
+
+For example, in Apt-based distributives it will be:
+::
+
+  $sudo apt-get install docker
+
+For Arch-like distros (Pacman-based):
+::
+
+  $sudo pacman -S docker
+
+If the repositories of your Linux distributive do not include the Docker packages, follow the `official instructions <https://docs.docker.com/engine/install/binaries/#install-daemon-and-client-binaries-on-linux>`_ in order to install them from binaries.
+
+Once you have successfully installed Docker, you can encounter the following error:
+::
+
+  Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+
+In some Linux distributives, daemons of newly-installed software do not automatically start with the system.
+In this case, you have to start the Docker daemon manually:
+::
+
+  $systemctl start docker
+
+After that, you can start working with Docker itself.
+
+2. Windows and Mac
+------------------
+In order to install Docker on Windows or MacOS, refer to the `official download page <https://hub.docker.com/search?q=&type=edition&offering=community>`_ and follow the instructions.

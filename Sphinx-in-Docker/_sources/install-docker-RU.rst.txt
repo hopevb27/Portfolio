@@ -1,0 +1,37 @@
+.. _install-docker-RU:
+
+Установка Docker
+================
+
+1. Linux
+--------
+Установите Docker при помощи пакетного менеджера Вашего дистрибутива: Docker включен в большинство репозиториев.
+
+К примеру, для пакетного менеджера Apt наберите следующую команду:
+::
+
+  $sudo apt-get install docker
+
+Для дистрибутивов на основе Arch (с пакетным менеджером Pacman):
+::
+
+  $sudo pacman -S docker
+
+Если Docker не включен в репозитории Вашего дистрибутива Linux, следуйте `официальной инструкции <https://docs.docker.com/engine/install/binaries/#install-daemon-and-client-binaries-on-linux>`_ по сборке Docker из бинарных файлов.
+
+При запуске Docker после установки Вы можете столкнуться со следующей ошибкой:
+::
+
+  Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+
+В некоторых дистрибутивах Linux демоны стороннего ПО не запускаются автоматически вместе с ОС.
+В этом случае запустите демон Docker вручную:
+::
+
+  $systemctl start docker
+
+После запуска демона Вы можете начать работу с Docker.
+
+2. Windows и Mac
+------------------
+Для установки Docker на Windows или MacOS скачайте его с `официальной страницы загрузки <https://hub.docker.com/search?q=&type=edition&offering=community>`_ и следуйте приведенным инструкциям.

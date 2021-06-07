@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How to install Docker &#8212; Sphinx 1 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Установка Docker" href="install-docker-RU.html" />
+    <link rel="prev" title="How to deploy and use Sphinx in Docker" href="sphinx-on-docker.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-install-docker">
+<span id="install-docker"></span><h1>How to install Docker<a class="headerlink" href="#how-to-install-docker" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="linux">
+<h2>1. Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h2>
+<p>Refer to the package manager of your OS - the majority of repositories include Docker.</p>
+<p>For example, in Apt-based distributives it will be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$sudo apt-get install docker
+</pre></div>
+</div>
+<p>For Arch-like distros (Pacman-based):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$sudo pacman -S docker
+</pre></div>
+</div>
+<p>If the repositories of your Linux distributive do not include the Docker packages, follow the <a class="reference external" href="https://docs.docker.com/engine/install/binaries/#install-daemon-and-client-binaries-on-linux">official instructions</a> in order to install them from binaries.</p>
+<p>Once you have successfully installed Docker, you can encounter the following error:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+</pre></div>
+</div>
+<p>In some Linux distributives, daemons of newly-installed software do not automatically start with the system.
+In this case, you have to start the Docker daemon manually:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$systemctl start docker
+</pre></div>
+</div>
+<p>After that, you can start working with Docker itself.</p>
+</div>
+<div class="section" id="windows-and-mac">
+<h2>2. Windows and Mac<a class="headerlink" href="#windows-and-mac" title="Permalink to this headline">¶</a></h2>
+<p>In order to install Docker on Windows or MacOS, refer to the <a class="reference external" href="https://hub.docker.com/search?q=&amp;type=edition&amp;offering=community">official download page</a> and follow the instructions.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Sphinx</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="sphinx-on-docker.html">How to deploy and use Sphinx in Docker</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to install Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#linux">1. Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windows-and-mac">2. Windows and Mac</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="install-docker-RU.html">Установка Docker</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="sphinx-on-docker.html" title="previous chapter">How to deploy and use Sphinx in Docker</a></li>
+      <li>Next: <a href="install-docker-RU.html" title="next chapter">Установка Docker</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, hopevb.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/install-docker.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,80 @@
+How to deploy and use Sphinx in Docker
+==========================================
+
+1.  Install Docker
+-------------------
+In order to install Docker software on your OS, refer to the :ref:`additional manual <install-docker>`.
+
+2.  Download the Sphinx image
+----------------------------------------
+Once you have installed Docker, download the Sphinx-Doc image:
+::
+
+  $docker pull sphinxdoc/sphinx
+
+If you prefer to build documents in PDF, download the image containing the TeXLive packages:
+::
+
+  $docker pull sphinxdoc/sphinx-latexpdf
+
+In order to check if the Sphinx image has been successfully downloaded, run the following command:
+::
+
+  $docker images
+
+You will receive the list containing all images you have downloaded:
+::
+
+  REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+  sphinxdoc/sphinx    latest              a55aa3f72f43        9 days ago          281MB
+
+If you don't need a Sphinx image anymore, you can remove it like any other Docker image by running the command **rmi**:
+::
+
+  $docker rmi <IMAGE ID>
+
+3.  Create and manage your Sphinx container
+-------------------------------------------
+After successful download of the Sphinx image, you can start working with it.
+
+First of all, don't forget that all Sphinx commands will be performed in a Docker container with the use of its own filesystem.
+Moreover, after successfull finish of each command, the container will be terminated and all files that are not included in the original image will be purged.
+
+In order to operate your source files properly and save them on your HDD, you should do the following:
+
+* Run a Sphinx container;
+* Mount your local folder to the folder inside of the created Sphinx container;
+* Start the Bash session in the Sphinx container.
+
+This can be done in one complex command:
+::
+
+  $docker run -it -v <LOCAL_FOLDER>:/<CONTAINER_FOLDER>  sphinxdoc/sphinx /bin/bash
+
+* The command **run** starts a container. The flag **-i** opens the standard input (STDIN) of the container and allows it to grab your next commands. The flag **-t** assigns a pseudo-TTY or a terminal to this container. These two flags (-it in combination) allow to open the Bash shell included in the Sphinx image.
+* The flag **-v** mounts your local folder to a definite folder of the newly created container. Note that you require an absolute path of a folder on your HDD. After the path, type the colon and choose or create any folder inside the container.
+
+Example:
+::
+
+  C:\My_Docs_on_HDD:/My_Docs_in_Container
+
+* **sphinxdoc/sphinx** is the name of the Sphinx image to create a container.
+* The **bin/bash** command starts the terminal inside the created container.
+
+Once you have run this command, you will enter the inner Bash session:
+::
+
+  root@<Container_ID>:/docs#
+
+It starts from the */docs* directory. In order to find your mounted directory, leave the */docs* with the use of the command **cd ..**, find and enter the directory you have chosen. For this, you can use the **&&** operand:
+::
+
+  root@<Container_ID>:/docs# cd .. && cd /My_Docs_in_Container
+  root@<Container_ID>:/My_Docs_in_Container#
+
+From here, you can use the Sphinx software as usual. All changes you have done inside the container will be automatically stored in your local folder, and vice versa.
+
+Once you have finished work with the container, press *Ctrl+D* in order to exit the Bash shell. This will also terminate the container.
+
+You can get additional information about usage of the Sphinx image in the `official Docker Hub manual <https://hub.docker.com/r/sphinxdoc/sphinx/>`_.
