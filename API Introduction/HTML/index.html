@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction to Web APIs &#8212; Python  documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="introduction-to-web-apis">
+<h1>Introduction to Web APIs<a class="headerlink" href="#introduction-to-web-apis" title="Permalink to this headline">¶</a></h1>
+<p>First, we’ll look at the basics of what an API is - how they work, how to use them in your code, how they are structured. We will also see what the main APIs are and how to use them.</p>
+<blockquote>
+<div><p><strong>Prerequisites:</strong> Basic knowledge of computer science, basic understanding of HTML and CSS, notions of JavaScript.</p>
+<p><strong>Objective:</strong> To familiarize yourself with APIs, what they can do, and how to use them in your code.</p>
+</div></blockquote>
+<div class="section" id="what-is-an-api">
+<h2>What is an API?<a class="headerlink" href="#what-is-an-api" title="Permalink to this headline">¶</a></h2>
+<p><strong>APIs (Application Programming Interfaces)</strong> are constructs available in programming languages to allow developers to create complex functionality more easily. They take care of the more complex parts of code, providing the developer with easier-to-use syntax instead.</p>
+<p>As a concrete example, think of electrical connections in a house, apartment or other dwelling. If you want to use an appliance in your house, you just plug it into an outlet and it works. You don’t try to plug it directly into the power supply - doing so would be really inefficient, and, if you’re not an electrician, difficult and dangerous to do.</p>
+<p>Similarly, for example, when programming 3D graphics, it’s much easier to do so using an API written in a high-level language like JavaScript or Python, rather than trying to write low-level code (like C or C+) that directly controls the computer’s GPU or other graphics functions.</p>
+<blockquote>
+<div><p><strong>Note:</strong></p>
+<p>See also the glossary entry for the term API for more descriptions.</p>
+</div></blockquote>
+</div>
+<div class="section" id="client-side-javascript-api">
+<h2>Client-side JavaScript API<a class="headerlink" href="#client-side-javascript-api" title="Permalink to this headline">¶</a></h2>
+<p>Client-side JavaScript in particular has many APIs at its disposal - they are not part of the JavaScript language itself, they are built on top of JavaScript, offering additional superpowers to use in your code. They generally fall into one of two categories:</p>
+<ul class="simple">
+<li><p>Browser APIs are built into the web browser and make data from the browser and its environment available to do complex things with. For example, the Web Audio API provides JavaScript constructs to manipulate audio data in the browser. You can use this API to retrieve an audio track and then lower its volume, apply effects, etc. Under the hood, the browser takes care of the more complex layers of “low-level” code (C++ or Rust, for example) in order to perform the signal processing. Again, this complexity is masked by the abstraction offered by the API.</p></li>
+<li><p>Third-party APIs are not built into the browser by default, and you usually have to retrieve the API code and information from a website.</p></li>
+</ul>
+<p>For example: the Twitter API allows you to display your latest tweets on your website. It provides a set of constructs that you can use to query the Twitter service, which then returns the requested information.</p>
+</div>
+<div class="section" id="relationship-between-javascript-apis-and-other-javascript-tools">
+<h2>Relationship between JavaScript, APIs and other JavaScript tools<a class="headerlink" href="#relationship-between-javascript-apis-and-other-javascript-tools" title="Permalink to this headline">¶</a></h2>
+<p>Above, we’ve outlined what a client-side JavaScript API is and its relationship to the JavaScript language. To recap, clarify, and provide more detail on other JavaScript tools that exist:</p>
+<ul class="simple">
+<li><p><strong>JavaScript</strong> - A high-level programming language built into browsers that enables functionality to be implemented on web pages and applications. Note that JavaScript is also available in other programming environments, such as Node. But don’t worry about it for now.</p></li>
+<li><p><strong>Browser APIs</strong> - Built-in constructs in the browser on top of JavaScript that allow for easier implementation of functionality.</p></li>
+<li><p><strong>Third-party APIs</strong> - Constructs built into third-party platforms (e.g. Twitter, Facebook) that allow you to use some of the functionality of those platforms in your own web pages (e.g. display your latest Tweets on your web page).</p></li>
+<li><p><strong>JavaScript libraries</strong> - Usually one or more JavaScript files containing custom functions that you can attach to your web page to speed up or enable the writing of common features. Examples include jQuery, Mootools and React.</p></li>
+<li><p><strong>JavaScript frameworks</strong> - On top of libraries, JavaScript frameworks (e.g. Angular and Ember) are more like packages of HTML, CSS, JavaScript and other technologies, which you install and then use to write an entire web application.</p></li>
+</ul>
+<p>The key difference between a library and a framework is “Reverse Control”. With a library, it is the developer who calls the library’s methods - he exercises control. With a framework, the control is reversed: the framework calls the developer’s code.</p>
+</div>
+</div>
+<div class="section" id="what-can-apis-do">
+<h1>What can APIs do?<a class="headerlink" href="#what-can-apis-do" title="Permalink to this headline">¶</a></h1>
+<p>There are a lot of APIs available in modern browsers. They allow you to do a wide range of things. You can get an idea by taking a look at the MDN API index page.</p>
+<div class="section" id="common-browser-apis">
+<h2>Common browser APIs<a class="headerlink" href="#common-browser-apis" title="Permalink to this headline">¶</a></h2>
+<p>In particular, here are the most common categories of browser APIs you’ll use (and which we’ll look at in this module in more detail):</p>
+<ul class="simple">
+<li><p><strong>APIs for manipulating documents</strong> loaded into the browser. The most obvious example is the <strong>DOM</strong> (Document Object Model) API. It allows you to manipulate HTML and CSS - create, delete and modify HTML code, apply new styles to your page dynamically, etc. For example, every time you see a pop-up window appear on a page, or new content displayed, the DOM is in action. Find out more about these types of APIs in the Manipulating Documents section.</p></li>
+<li><p><strong>APIs for retrieving data from the server</strong> to update sections of a web page are commonly used. This seemingly trivial detail has had a huge impact on site performance and behavior - if you just need to update a product listing or display new items available, doing so instantly without having to reload the entire page from the server can make the site or application much more responsive and “eye-catching.” XMLHttpRequest and the Fetch API are the APIs that make this possible. You may also see the term <strong>Ajax</strong> used to describe this technique. To learn more about these APIs, see Fetch Data from the Server.</p></li>
+<li><p><strong>APIs for drawing and manipulating graphics</strong> are now commonly supported in browsers - the most popular are <strong>Canvas</strong> and <strong>WebGL</strong>. They allow programmatically updating the pixels contained in an HTML <code class="docutils literal notranslate"><span class="pre">&lt;canvas&gt;</span></code> element to create 2D and 3D scenes. For example, you can draw shapes like rectangles or circles, import an image onto the canvas, and apply a sepia or grayscale filter to it using the Canvas API, or create a complex 3D scene with lighting and textures using WebGL. Such APIs are often combined with other APIs, for example <code class="docutils literal notranslate"><span class="pre">window.requestAnimationFrame()</span></code>, to create animation loops (making continuous scene updates) and thus create cartoons and games. To learn more about these APIs, see Drawing graphical elements.</p></li>
+<li><p><strong>Audio and video APIs</strong>, such as <strong>HTMLMediaElement</strong>, <strong>Web Audio API</strong> or <strong>WebRTC</strong>, allow you to do really interesting things with multimedia, such as creating custom UI controls to play audio and video, displaying text such as captions and subtitles, retrieving video from your webcam to display on another person’s computer in a video conference or adding effects to audio tracks (such as gain, distortion, balance, etc.). To learn more about these APIs, see Audio and Video APIs.</p></li>
+<li><p><strong>Device APIs</strong> essentially allow you to handle and retrieve data from modern devices in ways that are useful for web applications. We’ve already talked about the geolocation API accessing the device’s location data so you can pinpoint your position on a map. Other examples include letting the user know that an update is available for a web application via system notifications (see Notifications API) or vibrations (see Vibration API).</p></li>
+<li><p><strong>Client-side storage APIs</strong> are becoming increasingly common in web browsers - the ability to store data on the client side is very useful if you want to create an application that saves its state between page loads, and perhaps even runs when the device is offline. There are a number of options available, for example simple name/value storage with the Web Storage API, and more complex tabular data storage with the <strong>IndexedDB API</strong>. To learn more about these APIs, see Client-Side Storage.</p></li>
+</ul>
+</div>
+<div class="section" id="common-third-party-apis">
+<h2>Common third-party APIs<a class="headerlink" href="#common-third-party-apis" title="Permalink to this headline">¶</a></h2>
+<p>There are a wide variety of third-party APIs. Here are some of the most popular ones that you’ll probably use sooner or later:</p>
+<ul class="simple">
+<li><p>The <strong>Twitter API</strong> allows you to display your latest tweets on a website.</p></li>
+<li><p>Mapping APIs like <strong>Mapquest</strong> and <strong>Google Maps API</strong> allow you to make all kinds of maps in web pages.</p></li>
+<li><p>The <strong>Facebook API</strong> set allows you to use different parts of the Facebook ecosystem in your application (e.g. to connect to a Facebook account, manage payments or advertising, etc.).</p></li>
+<li><p><strong>Telegram APIs</strong> allow you to integrate content from Telegram channels on a website and support bots.</p></li>
+<li><p>The <strong>YouTube API</strong> allows you to embed YouTube videos on your site, search YouTube, build playlists, etc.</p></li>
+<li><p>The <strong>Pinterest API</strong> provides tools to manage Pinterest boards and pins and include them on your website.</p></li>
+<li><p>The <strong>Twilio API</strong> provides a set of tools to integrate audio and video calling features into an application and/or send SMS/MMS.</p></li>
+<li><p>The <strong>Mastodon API</strong> allows you to manipulate the features of the Mastodon social network through programs.</p></li>
+</ul>
+<p><strong>Note:</strong></p>
+<blockquote>
+<div><p>You can find information on many more third-party APIs in the Programmable Web API directory.</p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="how-do-the-apis-work">
+<h1>How do the APIs work?<a class="headerlink" href="#how-do-the-apis-work" title="Permalink to this headline">¶</a></h1>
+<p>Each JavaScript API works slightly differently from another, but in general they have common features and similar themes.</p>
+<div class="section" id="they-are-object-based">
+<h2>They are object-based<a class="headerlink" href="#they-are-object-based" title="Permalink to this headline">¶</a></h2>
+<p>APIs interact with code using one or more JavaScript objects, which serve as containers for the data used by the API (contained in object properties), and the functionality made available by the API (contained in object methods).</p>
+<blockquote>
+<div><p><strong>Note:</strong></p>
+<p>If you are not already familiar with how objects work, you should go back and browse the JavaScript objects module before continuing.</p>
+</div></blockquote>
+<p>Let’s take the <strong>Web Audio API</strong> as an example. This is a fairly complex API with several objects. Here are the main objects:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">AudioContext</span></code>, which represents an audio graph that can be used in order to manipulate audio playback in the browser and has different methods and properties that are available to manipulate this audio signal.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MediaElementAudioSourceNode</span></code>, which represents an <code class="docutils literal notranslate"><span class="pre">&lt;audio&gt;</span></code> element containing audio that we want to play and manipulate in the context.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AudioDestinationNode</span></code>, which represents the destination of the audio, i.e., the physical component that will be used to produce the sound (this is usually the speakers or headphones).</p></li>
+</ul>
+<p>So how do these objects interact? If you look at our audio component example (also look at it live), you will see the following code:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">audio</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;outfoxing.mp3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">audio</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;paused&quot;</span><span class="p">&gt;</span>Play<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;range&quot;</span> <span class="na">min</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">max</span><span class="o">=</span><span class="s">&quot;1&quot;</span> <span class="na">step</span><span class="o">=</span><span class="s">&quot;0.01&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;1&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;volume&quot;</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Firstly, we include an <code class="docutils literal notranslate"><span class="pre">&lt;audio&gt;</span></code> element with which we embed an MP3 in the page. We do not include any default browser controls. Next, we include a <code class="docutils literal notranslate"><span class="pre">&lt;button&gt;</span></code> that we’ll use to play and stop the music, and a range <code class="docutils literal notranslate"><span class="pre">&lt;input&gt;</span></code> element, which we’ll use to adjust the volume of the track being played.</p>
+<p>Next, let’s look at the JavaScript for this example.</p>
+<p>We start by creating an AudioContext instance inside which we’ll manipulate our track:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">AudioContext</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">AudioContext</span> <span class="o">||</span> <span class="nb">window</span><span class="p">.</span><span class="nx">webkitAudioContext</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">audioCtx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AudioContext</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Next, we create constants that store references to our <code class="docutils literal notranslate"><span class="pre">&lt;audio&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;button&gt;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&lt;input&gt;</span></code> elements, and we use the <code class="docutils literal notranslate"><span class="pre">AudioContext.createMediaElementSource()</span></code> method to create a <code class="docutils literal notranslate"><span class="pre">MediaElementAudioSourceNode</span></code> representing the source of our audio - the <code class="docutils literal notranslate"><span class="pre">&lt;audio&gt;</span></code> element will be played from :</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">audioElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;audio&#39;</span><span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">playBtn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">volumeSlider</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.volume&#39;</span><span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">audioSource</span> <span class="o">=</span> <span class="nx">audioCtx</span><span class="p">.</span><span class="nx">createMediaElementSource</span><span class="p">(</span><span class="nx">audioElement</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Next, we include two event handlers that are used to toggle between play and pause when the button is pressed and to reset the display to the beginning when the song is over :</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span>  <span class="nx">playBtn</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="c1">// check if the context is in suspend state (autoplay policy)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">audioCtx</span><span class="p">.</span><span class="nx">state</span> <span class="o">===</span> <span class="s1">&#39;suspended&#39;</span><span class="p">)</span> <span class="p">{</span>
+
+      <span class="nx">audioCtx</span><span class="p">.</span><span class="nx">resume</span><span class="p">();</span>
+
+    <span class="p">}</span>
+
+  
+  <span class="c1">// if the track is stopped, play it</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;paused&#39;</span><span class="p">)</span> <span class="p">{</span>
+
+      <span class="nx">audioElement</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;playing&#39;</span><span class="p">);</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s1">&#39;Pause&#39;</span><span class="p">;</span>
+
+    <span class="c1">// if a track is playing, stop it</span>
+
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;playing&#39;</span><span class="p">)</span> <span class="p">{</span>
+
+      <span class="nx">audioElement</span><span class="p">.</span><span class="nx">pause</span><span class="p">();</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;paused&#39;</span><span class="p">);</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s1">&#39;Play&#39;</span><span class="p">;</span>
+
+    <span class="p">}</span>
+
+  <span class="p">});</span>
+
+  <span class="c1">// if the track ends</span>
+
+  <span class="nx">audioElement</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;ended&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="nx">playBtn</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;paused&#39;</span><span class="p">);</span>
+
+    <span class="nx">playBtn</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s1">&#39;Play&#39;</span><span class="p">;</span>
+
+  <span class="p">});</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Note:</strong></p>
+<p>Some of you may have noticed that the <code class="docutils literal notranslate"><span class="pre">play()</span></code> and <code class="docutils literal notranslate"><span class="pre">pause()</span></code> methods used to play and pause the track are not part of the <strong>Web Audio API</strong>; they are part of the <strong>HTMLMediaElement API</strong>. which is different but closely related.</p>
+</div></blockquote>
+<p>Next, we create a <code class="docutils literal notranslate"><span class="pre">GainNode</span></code> object using the <code class="docutils literal notranslate"><span class="pre">AudioContext.createGain()</span></code> method, which can be used to adjust the volume of the audio passing through it, and we create another event handler that changes the gain (volume) value of the audio graph when the slider value is changed:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">gainNode</span> <span class="o">=</span> <span class="nx">audioCtx</span><span class="p">.</span><span class="nx">createGain</span><span class="p">();</span>
+
+<span class="nx">volumeSlider</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="nx">gainNode</span><span class="p">.</span><span class="nx">gain</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>The last thing you need to do to make this work is to connect the different nodes in the audio graph, which is done using the <code class="docutils literal notranslate"><span class="pre">AudioNode.connect()</span></code> method available on each node type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">audioSource</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">gainNode</span><span class="p">)</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">audioCtx</span><span class="o">.</span><span class="n">destination</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The audio starts in the source, which is then connected to the gain node so that the volume of the audio can be adjusted. The gain node is then connected to the destination node so that the audio can be played back on your computer (the <code class="docutils literal notranslate"><span class="pre">AudioContext.destination</span></code> property represents what is the default <code class="docutils literal notranslate"><span class="pre">AudioDestinationNode</span></code> available on your computer’s hardware, for example your speakers).</p>
+</div>
+<div class="section" id="they-have-recognizable-entry-points">
+<h2>They have recognizable entry points<a class="headerlink" href="#they-have-recognizable-entry-points" title="Permalink to this headline">¶</a></h2>
+<p>When using an API, you need to make sure you know where the API entry point is. In the <strong>Web Audio API</strong>, this is pretty straightforward - it’s the <code class="docutils literal notranslate"><span class="pre">AudioContext</span></code> object, which must be used to perform any kind of audio manipulation.</p>
+<p>The <strong>DOM</strong> (Document Object Model) API also has a simple entry point - its functionality tends to be found hooked into the <code class="docutils literal notranslate"><span class="pre">Document</span></code> object, or an instance of an HTML element that you want to affect in some way, for example:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">em</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;em&#39;</span><span class="p">);</span> <span class="c1">// create a new em element</span>
+
+<span class="kr">const</span> <span class="nx">para</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">);</span> <span class="c1">// reference an existing p element</span>
+
+<span class="nx">em</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s1">&#39;Hello there!&#39;</span><span class="p">;</span> <span class="c1">// give em some text content</span>
+
+<span class="nx">para</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">em</span><span class="p">);</span> <span class="c1">// embed em in the paragraph</span>
+</pre></div>
+</div>
+<p>The <strong>Canvas API</strong> also relies on getting a context object to use to manipulate things, although in this case it’s a graphical context rather than an audio context. Its context object is created by getting a reference to the <code class="docutils literal notranslate"><span class="pre">&lt;canvas&gt;</span></code> element you want to draw on, then calling its <code class="docutils literal notranslate"><span class="pre">HTMLCanvasElement.getContext()</span></code> method:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;canvas&#39;</span><span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">ctx</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">&#39;2d&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Everything we want to do to the canvas is then done by calling the properties and methods of the context object (which is an instance of <code class="docutils literal notranslate"><span class="pre">CanvasRenderingContext2D</span></code>), for example :</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">Ball</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">draw</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+<span class="nx">ctx</span><span class="p">.</span><span class="nx">beginPath</span><span class="p">();</span>
+
+<span class="nx">ctx</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="p">;</span>
+
+<span class="nx">ctx</span><span class="p">.</span><span class="nx">arc</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">size</span><span class="p">,</span> <span class="mf">0</span><span class="p">,</span> <span class="mf">2</span> <span class="o">*</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="p">);</span>
+
+<span class="nx">ctx</span><span class="p">.</span><span class="nx">fill</span><span class="p">();</span>
+
+<span class="p">};</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Note :</strong></p>
+<p>You can see this code in action in our bouncing ball demo (see it working live too).</p>
+</div></blockquote>
+</div>
+<div class="section" id="they-use-events-to-handle-state-changes">
+<h2>They use events to handle state changes<a class="headerlink" href="#they-use-events-to-handle-state-changes" title="Permalink to this headline">¶</a></h2>
+<p>We have already covered events earlier in the course in our Introduction to Events article, which looks in detail at what client-side web events are and how they are used in your code. If you’re not already familiar with how client-side web API events work, we recommend you read that article before proceeding.</p>
+<p>Some Web APIs contain no events at all, but most contain at least a few. The handler properties that allow us to execute functions when events occur are usually listed in our reference material in separate sections called “Event Handlers”.</p>
+<p>We have already seen a number of event handlers used in our <strong>Web Audio API</strong> example above.</p>
+<p>To provide another example, instances of the <code class="docutils literal notranslate"><span class="pre">XMLHttpRequest</span></code> object (each represents an HTTP request to the server to retrieve a new resource of a certain type) has a number of events available on them, for example, the load event is fired when a response has been successfully returned containing the requested resource, and it is now available.</p>
+<p>The following code provides a simple example of how this can be used:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">requestURL</span> <span class="o">=</span> <span class="s1">&#39;https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json&#39;</span><span class="p">;</span>
+
+<span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+
+<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="nx">requestURL</span><span class="p">);</span>
+
+<span class="nx">request</span><span class="p">.</span><span class="nx">responseType</span> <span class="o">=</span> <span class="s1">&#39;json&#39;</span><span class="p">;</span>
+
+<span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+
+<span class="nx">request</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+<span class="kr">const</span> <span class="nx">superHeroes</span> <span class="o">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">response</span><span class="p">;</span>
+
+<span class="nx">populateHeader</span><span class="p">(</span><span class="nx">superHeroes</span><span class="p">);</span>
+
+<span class="nx">showHeroes</span><span class="p">(</span><span class="nx">superHeroes</span><span class="p">);</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Note :</strong></p>
+<p>You can see this code in action in our ajax.html example (see it live too).</p>
+</div></blockquote>
+<p>The first five lines specify the location of the resource we want to retrieve, create a new instance of a request object using the <code class="docutils literal notranslate"><span class="pre">XMLHttpRequest()</span></code> constructor, open an HTTP GET request to retrieve the specified resource, specify that the response should be sent in JSON format, and then send the request.</p>
+<p>The onload handler function then specifies what we do with the response. We know that the response will be successfully returned and available after the load event is fired (unless an error occurred), so we save the response containing the returned JSON in the superHeroes variable, then pass it to two different functions for further processing.</p>
+</div>
+<div class="section" id="they-have-adequate-additional-security-mechanisms">
+<h2>They have adequate additional security mechanisms<a class="headerlink" href="#they-have-adequate-additional-security-mechanisms" title="Permalink to this headline">¶</a></h2>
+<p>Web API functionality is subject to the same security considerations as JavaScript and other web technologies (e.g., same-origin policy), but sometimes they have additional security mechanisms. For example, some of the more modern Web APIs will only work on pages served over HTTPS because they transmit potentially sensitive data (e.g. Service Workers and Push).</p>
+<p>In addition, some Web APIs require permission to be enabled from the user once calls to these interfaces are made in your code. As an example, the Notifications API asks for permission using a pop-up dialog:</p>
+<p><strong>Web Audio</strong> and <strong>HTMLMediaElement APIs</strong> are subject to a security mechanism called <code class="docutils literal notranslate"><span class="pre">autoplay</span> <span class="pre">policy</span></code> - this essentially means that you cannot automatically play audio when a page loads - you must allow your users to trigger audio playback through a control such as a button. This is done because automatic audio playback is generally very annoying and we should not subject our users to it.</p>
+<p><strong>Note:</strong></p>
+<blockquote>
+<div><p>Depending on the stringency of the browser, these security mechanisms may even prevent the example from running locally, that is, if you load the local example file into your browser instead of running it from a web server. At the time of writing, our <strong>Audio Web API</strong> example was not running locally on Google Chrome - we had to upload it to GitHub before it worked.</p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="summary">
+<h1>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h1>
+<p>At this point, you should have a good idea of what APIs are, how they work, and what you can do with them in your JavaScript code. You’re probably eager to start doing fun things with specific APIs, so let’s get started!</p>
+</div>
+
+
+          </div>
+          
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
